@@ -1,6 +1,6 @@
 # Database-system
 Learn the database system. 
-Fisrt two part is sqlite3 part. I learnt how to use SQL language in sqlite3. In demo file, I display the class I created running in main.py.
+Fisrt two part is sqlite3 part. I learnt how to use SQL language in sqlite3. In first_demo file, I display the class I created running in main.py.
 
 In next period, I will extend my class. To add more function inside my databse class. 
 
