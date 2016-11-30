@@ -1,0 +1,3 @@
+In this semester, I work on the database system in pyLemma. I use the sqlite3 as my database. Until now, I create a small class to do some simply work. In next period, I will extend my class. To add more function inside my databse class. 
+
+What's more, after presentation, I got that the sqlite3 does not fit my work. I need to choose a better database system to continue my development. I have two choose PostgreSQL or mysql. I will know about each databse quickly. And then make a decision.
