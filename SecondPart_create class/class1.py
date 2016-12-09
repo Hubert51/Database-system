@@ -25,25 +25,57 @@ class DatabaseIO:
 
         self.con = sqlite3.connect(name)
         self.cur = self.con.cursor()
-        d_table = {}
+        self.d_table = {}
         
-
-    def create_table1(self):
+    def table_info(self):
+        """
+        This function tries to get the information about table in database.
+        If table exist, function will print the number of columns in table and
+        their name.
+        """
+        
+        table_name = raw_input("Please entre the table name ==> ")
+        info = list(self.cur.execute("PRAGMA table_info('{}')".format(table_name)))
+        if len(info) == 0:
+            print("This table does not exist!")
+            print ''
+            
+        else:
+            print "There are {} columns in this table.".format(info[-1][0])
+            for r in info:
+                print r  
+            print ""
+    
+    
+    
+    def create_table(self):
+        """
+        This function is trying to create a table.
+        """
+        
         table_name = raw_input("Please entre the table name ==> ")
         l = []  # This list stores the info which is used to create table
-        while 1 > 0:
+        if table_name in self.d_table:
+            print "Table already exist in database."
+            pass
+        
+        self.d_table[table_name] = []
+        
+        while True:
             column = raw_input('''Please entre column with this data tpye such as 
 INTEGER or TXT (if finish, type: end) ==> ''')
             if column != "end":
                 l.append(column)
+                self.d_table[table_name].append(column)
+                
             else:
                 break
+            
+        
         key = raw_input("Please enter the key ==> ")
         num = len(l)        
         command = "CREATE TABLE {:} (".format(table_name)
-        
-        
-        
+    
         for i in l:
             command += "{:} NOT NULL,".format(i)
             
@@ -55,6 +87,9 @@ INTEGER or TXT (if finish, type: end) ==> ''')
     
     def add_data(self):
         table_name = raw_input("Please enter the table name which you want to add data ==> ")
+        while not table_name in self.d_table:
+            table_name = raw_input("Please enter the table name which you want to add data ==> ")
+        
         
         if table_name == "student":
             rin = raw_input("Please entre the Rin ==> ")
@@ -76,9 +111,6 @@ INTEGER or TXT (if finish, type: end) ==> ''')
             information = (course_number,time,rin)
             cur = self.cur.execute('INSERT INTO ' + '"' + table_name + '"' + 'VALUES (?,?,?)', information)            
             
-            
-            
-
     def execute(self, string):
         return self.cur.execute(string)
 
