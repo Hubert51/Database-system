@@ -13,28 +13,40 @@ start.execute('SELECT * FROM cs1100')    # select all the data from table
 start.fetchall()                         # Read all line from table
 start.fetchone()                         # Read one line from table
 """
-start = class1.DatabaseIO("example2.db")
-    
+start = class1.DatabaseIO("example.db")
+
+#start.table_info()
+
 commend = ""
 
 while commend != "end":
     
-    commend = raw_input("what do you want to do? ('create', 'add', 'execute', 'fetch' or 'end'): ")
+    commend = raw_input("""what do you want to do? ('create', 'add', 'execute', 'fetch', 
+                         'show table', 'table info', 'aggregation' and 'end'): """)
     if commend == "checktable":
 	start.table_info()
 	
     elif commend == "create":
 	start.create_table()
+    
+    elif commend =="show table":
+	start.showTable()
 	
     
     elif  commend == "add":
 	start.add_data()                         # ADD DATA
 
+    elif commend == "table info":
+	start.table_info()
+	
     elif  commend == "execute":
 	start.execute('SELECT * FROM student')    # select all the data from table
 
     elif commend == "fetch":
 	start.fetchall()
+	
+    elif commend == "aggregation":
+	start.aggregation()
 
 
 
